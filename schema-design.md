@@ -4,27 +4,23 @@
 
 ### Table: patient
 - id: INT, Primary Key, Auto Increment
-- user_name: VARCHAR(35), Not Null
+- name: VARCHAR(35), Not Null
 - password: VARCHAR(12), Not Null
-- first_name: VARCHAR(35), Not Null
-- last_name: VARCHAR(35), Not Null
 - email: VARCHAR(320), Not Null
-- phone_number: VARCHAR(25), Not Null
+- phone: VARCHAR(25), Not Null
 - address: VARCHAR(255), Not Null
 
 ### Table: doctor
 - id: INT, Primary Key, Auto Increment
-- user_name: VARCHAR(35), Not Null
+- name: VARCHAR(35), Not Null
 - password: VARCHAR(12), Not Null
-- first_name: VARCHAR(35), Not Null
-- last_name: VARCHAR(35), Not Null
 - email: VARCHAR(320), Not Null
-- phone_number: VARCHAR(25), Not Null
+- phone: VARCHAR(25), Not Null
 - specialty: VARCHAR(100), Not Null
 
 ### Table: available_time
 - doctor_id: INT, Foreign Key -> doctor(id)
-- available_times: VARCHAR(100)
+- available_times: VARCHAR(3000)
 
 ### Table: appointment
 - id: INT, Primary Key, Auto Increment
@@ -35,7 +31,7 @@
 
 ### Table: admin
 - id: INT, Primary Key, Auto Increment
-- user_name: VARCHAR(35), Not Null
+- username: VARCHAR(35), Not Null
 - password: VARCHAR(12), Not Null
 
 ## MongoDB Collection Design
@@ -44,7 +40,7 @@
 ```json
 {
   "_id": "ObjectId('64abc123456')",
-  "patientId": { "$oid": "64a2f111e4b0a1b2c3d4e5aa" },
+  "patientName": { "$oid": "64a2f111e4b0a1b2c3d4e5aa" },
   "appointmentId": 51,
   "medication": "Paracetamol",
   "dosage": "500mg",

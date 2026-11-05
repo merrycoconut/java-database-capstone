@@ -14,28 +14,20 @@ public class Doctor{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "Username cannot be null")
+    @NotNull(message = "Name cannot be null")
     @Size(min = 2, max = 35)
-    private String userName;
+    private String name;
 
     @Size(min = 6)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @NotNull
-    @Size(min = 3, max = 35)
-    private String firstName;
-
-    @NotNull
-    @Size(min = 3, max = 35)
-    private String lastName;
-
-    @NotNull
     @Email
     private String email;
 
     @Pattern(regexp = "\\d{10}", message = "Phone number must be 10 digits")    
-    private String phoneNumber;
+    private String phone;
 
     @NotNull
     @Size(min = 3, max = 50)
@@ -46,46 +38,34 @@ public class Doctor{
 
     public Doctor() {}
 
-    public Doctor(Long id, String userName, String password, String firstName, String lastName, String email, String phoneNumber) {
+    public Doctor(Long id, String name, String password, String email, String phone) {
         this.id = id;
-        this.userName = userName;
+        this.name = name;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
         this.email = email;
-        this.phoneNumber = phoneNumber;
+        this.phone = phone;
     }
 
     public Long getId() {return id;}
-    public String getUserName() {return userName;}
+    public String getName() {return name;}
     public String getPassword() {return password;}
-    public String getFirstName() {return firstName;}
-    public String getLastName() {return lastName;}
     public String getEmail() {return email;}
-    public String getPhoneNumber() {return phoneNumber;}
+    public String getPhone() {return phone;}
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public void setFirstName(String name) {
-        this.firstName = name;
-    }
-
-    public void setLastName(String name) {
-        this.lastName = name;
-    }
-
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
 }

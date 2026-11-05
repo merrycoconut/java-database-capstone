@@ -9,7 +9,7 @@ public class Admin {
 
     @NotNull(message = "Username cannot be null")
     @Size(min = 2, max = 35)
-    private String userName;
+    private String username;
 
     @NotNull
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -17,18 +17,18 @@ public class Admin {
 
     public Admin(){}
 
-    public Admin(Long id, String userName, String password){
+    public Admin(Long id, String username, String password){
         this.id = id;
-        this.userName = userName;
+        this.username = username;
         this.password = password;
     }
 
     public Long getId() {return id;}
-    public String getUserName() {return userName;}
+    public String getUsername() {return username;}
     public String getpassword() {return password;}
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setpassword(String password) {
