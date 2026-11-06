@@ -34,16 +34,17 @@ public class Doctor{
     private String specialty;
 
     @ElementCollection
-    private List<String> availableTimes;
+    private List<String> doctorAvailableTimes;
 
     public Doctor() {}
 
-    public Doctor(Long id, String name, String password, String email, String phone) {
+    public Doctor(Long id, String name, String password, String email, String phone, List<String> doctorAvailableTimes) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.email = email;
         this.phone = phone;
+        this.doctorAvailableTimes = doctorAvailableTimes;
     }
 
     public Long getId() {return id;}
