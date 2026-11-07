@@ -261,3 +261,75 @@ INSERT INTO appointment (appointment_time, status, doctor_id, patient_id) VALUES
 ('2025-04-05 14:00:00.000000', 1, 4, 5),
 ('2025-04-09 11:00:00.000000', 1, 4, 6),
 ('2025-04-10 13:00:00.000000', 1, 4, 7);
+
+-- STORED PROCEDURE
+
+-- Procedure to generate a report for daily appointments, grouped by doctor
+DELIMITER $
+CREATE PROCEDURE GetDailyAppointmentReportByDoctor(
+    IN report_date DATE
+)
+BEGIN
+    SELECT 
+        doctor.name AS doctor_name, 
+        appointment.appointment_time,
+        appointment.status,
+        patient.name AS patient_name,
+        patient.phone AS patient_phone
+    FROM doctor
+    JOIN 
+        appointment ON doctor.id = appointment.doctor_id
+    JOIN 
+        patient ON appointment.patient_id = patient.id
+    WHERE 
+        appointment.status = 0 
+        AND DATE(appointment.appointment_time) = report_date
+    ORDER BY doctor.name, appointment.appointment_time;
+END$
+DELIMITER ;
+
+-- Procedure to identify the doctor who saw the most patients in a specific month
+DELIMITER $
+CREATE PROCEDURE GetDoctorWithMostPatientsByMonth(
+    IN input_month INT, 
+    IN input_year INT
+)
+BEGIN
+    SELECT 
+        doctor.name AS doctor,
+        COUNT(appointment.patient_id) AS patients_seen
+    FROM doctor
+    JOIN 
+        appointment ON appointment.doctor_id = doctor.id
+    WHERE
+        appointment.status = 1
+        AND input_month = MONTH(appointment.appointment_time)
+        AND input_year = YEAR(appointment.appointment_time)
+	GROUP BY doctor.id
+	ORDER BY patients_seen DESC
+    LIMIT 1;
+
+END$
+DELIMITER ;
+
+-- Procedure to identify the doctor who saw the most patients in a given year
+DELIMITER $
+CREATE PROCEDURE GetDoctorWithMostPatientsByYear(
+    IN input_year INT
+)
+BEGIN
+    SELECT 
+        doctor.name AS doctor,
+        COUNT(appointment.patient_id) AS patients_seen
+    FROM doctor
+    JOIN 
+        appointment ON appointment.doctor_id = doctor.id
+    WHERE
+        appointment.status = 1
+        AND input_year = YEAR(appointment.appointment_time)
+	GROUP BY doctor.id
+	ORDER BY patients_seen DESC
+    LIMIT 1;
+
+END$
+DELIMITER ;
