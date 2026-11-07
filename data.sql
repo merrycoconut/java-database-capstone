@@ -297,7 +297,7 @@ CREATE PROCEDURE GetDoctorWithMostPatientsByMonth(
 BEGIN
     SELECT 
         doctor.name AS doctor,
-        COUNT(appointment.patient_id) AS patients_seen
+        COUNT(DISTINCT appointment.patient_id) AS patients_seen
     FROM doctor
     JOIN 
         appointment ON appointment.doctor_id = doctor.id
@@ -320,7 +320,7 @@ CREATE PROCEDURE GetDoctorWithMostPatientsByYear(
 BEGIN
     SELECT 
         doctor.name AS doctor,
-        COUNT(appointment.patient_id) AS patients_seen
+        COUNT(DISTINCT appointment.patient_id) AS patients_seen
     FROM doctor
     JOIN 
         appointment ON appointment.doctor_id = doctor.id
