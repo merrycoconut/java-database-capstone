@@ -40,11 +40,12 @@
 ### Collection: prescriptions
 ```json
 {
-  "_id": "ObjectId('64abc123456')",
-  "patientName": { "$oid": "64a2f111e4b0a1b2c3d4e5aa" },
+  "_id": "ObjectId('6807dd712725f013281e7201')",
+  "patientName": "John Smith",
   "appointmentId": 51,
   "medication": "Paracetamol",
   "dosage": "500mg",
   "doctorNotes": "Take 1 tablet every 6 hours.",
-}
+  "_class": "com.project.back_end.models.Prescription"
+},
 ```
